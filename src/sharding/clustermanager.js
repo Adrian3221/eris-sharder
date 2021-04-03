@@ -497,7 +497,10 @@ class ClusterManager extends EventEmitter {
 
     async calculateShards() {
         let shards = this.shardCount;
-
+        
+        
+        if (this.shardCount !== 0) return Promise.resolve(this.shardCount);
+        
         let result = await this.eris.getBotGateway();
         shards = result.shards;
 
