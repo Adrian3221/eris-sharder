@@ -41,7 +41,7 @@ class ClusterManager extends EventEmitter {
             stats: options.stats || false,
             debug: options.debug || false
         };
-
+        this.color = options.color || null
         this.statsInterval = options.statsInterval || 60 * 1000;
         this.mainFile = mainFile;
         this.name = options.name || "Eris-Sharder";
@@ -185,7 +185,8 @@ class ClusterManager extends EventEmitter {
                 logger.info("Cluster Manager", `Starting ${this.shardCount} shards in ${this.clusterCount} clusters`);
 
                 let embed = {
-                    title: `Starting ${this.shardCount} shards in ${this.clusterCount} clusters`
+                    title: `Starting ${this.shardCount} shards in ${this.clusterCount} clusters`,
+                    color: this.color
                 }
 
                 this.sendWebhook("cluster", embed);
@@ -346,7 +347,7 @@ class ClusterManager extends EventEmitter {
 
         master.on('disconnect', (worker) => {
             const clusterID = this.workers.get(worker.id);
-            logger.warn("Cluster Manager", `cluster ${clusterID} disconnected`);
+            logger.warn("Cluster Manager", `Cluster ${clusterID} disconnected (╯°□°）╯︵ ┻━┻`);
         });
 
         master.on('exit', (worker, code, signal) => {
@@ -446,7 +447,7 @@ class ClusterManager extends EventEmitter {
                 margin: 2
             })
                 .emptyLine()
-                .right(`eris-sharder ${pkg.version}`)
+                .right(`Sharder ${pkg.version}`)
                 .emptyLine()
                 .render()
         );
@@ -455,13 +456,14 @@ class ClusterManager extends EventEmitter {
     restartCluster(worker, code, signal) {
         const clusterID = this.workers.get(worker.id);
 
-        logger.warn("Cluster Manager", `cluster ${clusterID} died`);
+        logger.warn("Cluster Manager", `Cluster ${clusterID} died`);
 
         let cluster = this.clusters.get(clusterID);
 
         let embed = {
-            title: `Cluster ${clusterID} died with code ${code}. Restarting...`,
-            description: `Shards ${cluster.firstShardID} - ${cluster.lastShardID}`
+            title: `Cluster ${clusterID} died with code ${code}. Restarting bot...`,
+            description: `Shards ${cluster.firstShardID} - ${cluster.lastShardID}`,
+            color: this.color,
         }
 
         this.sendWebhook("cluster", embed);
