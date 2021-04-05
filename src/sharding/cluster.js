@@ -42,7 +42,7 @@ class Cluster {
         this.app = null;
         this.bot = null;
         this.test = false;
-
+        this.color = 0x5c66fa;
         this.ipc = new IPC();
 
         console.log = (str) => process.send({ name: "log", msg: this.logOverride(str) });
@@ -196,32 +196,35 @@ class Cluster {
         });
 
         bot.on("connect", id => {
-            process.send({ name: "log", msg: `Shard ${id} established connection!` });
+            process.send({ name: "log", msg: `Shard ${id} estabilizó una conexión!` });
         });
 
         bot.on("shardDisconnect", (err, id) => {
-            process.send({ name: "log", msg: `Shard ${id} disconnected!` });
+            process.send({ name: "log", msg: `Shard ${id} desconectada!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} disconnected!`
+                description: `Shard ${id} disconnected!`,
+                color: this.color
             }
             process.send({ name: "shard", embed: embed });
         });
 
         bot.on("shardReady", id => {
-            process.send({ name: "log", msg: `Shard ${id} is ready!` });
+            process.send({ name: "log", msg: `Shard ${id} está lista!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} is ready!`
+                description: `Shard ${id} is ready! (${bot.shards.get(id).latency} ms)`,
+                color: this.color
             }
             process.send({ name: "shard", embed: embed });
         });
 
         bot.on("shardResume", id => {
-            process.send({ name: "log", msg: `Shard ${id} has resumed!` });
+            process.send({ name: "log", msg: `Shard ${id} ha resumido!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} resumed!`
+                description: `Shard ${id} resumed!`,
+                color: this.color
             }
             process.send({ name: "shard", embed: embed });
         });
@@ -241,10 +244,11 @@ class Cluster {
         });
 
         bot.on("ready", id => {
-            process.send({ name: "log", msg: `Shards ${this.firstShardID} - ${this.lastShardID} are ready!` });
+            process.send({ name: "log", msg: `Shards ${this.firstShardID} - ${this.lastShardID} están listas!` });
             let embed = {
                 title: `Cluster ${this.clusterID} is ready!`,
-                description: `Shards ${this.firstShardID} - ${this.lastShardID}`
+                description: `Shards ${this.firstShardID} - ${this.lastShardID}`,
+                color: this.color
             }
             process.send({ name: "cluster", embed: embed });
 
