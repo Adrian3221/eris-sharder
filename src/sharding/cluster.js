@@ -247,7 +247,7 @@ class Cluster {
             process.send({ name: "log", msg: `Shards ${this.firstShardID} - ${this.lastShardID} están listas!` });
             let embed = {
                 title: `Cluster ${this.clusterID} is ready!`,
-                description: `Shards ${this.firstShardID} - ${this.lastShardID}`,
+                description: `Shards ${this.firstShardID} - ${this.lastShardID} are ready`,
                 color: this.color
             }
             process.send({ name: "cluster", embed: embed });
