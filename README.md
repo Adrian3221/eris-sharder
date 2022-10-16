@@ -39,6 +39,7 @@ const sharder = new Sharder(token, pathToMainFile, options);
 | `options.shards` | The number of total shards you plan to run. Defaults to the amount that the gateway reccommends, taking into account `options.guildsPerShard` |
 | `options.firstShardID` | ID of the first shard to start on this instance. Defaults to `0` |
 | `options.lastShardID` | ID of the last shard to start on this instance. Defaults to `options.shards - 1` |
+| `options.color` | Number of the color to put in the embed. Defaults to `0` |
 | `options.debug` | Boolean to enable debug logging.|
 |`options.statsInterval` | Interval to release the stats event in milliseconds. Defaults to every minute
 | `options.name` | Name to print on startup. By default it's "Eris-Sharder".|
