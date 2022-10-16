@@ -129,7 +129,7 @@ class ClusterManager extends EventEmitter {
      */
     start(clusterID) {
         if (clusterID === this.clusterCount) {
-            logger.info("Cluster Manager", "Clusters have been launched!");
+            logger.info("Cluster Manager", "Todos los clusters han sidos lanzados");
 
             let shards = [];
 
@@ -174,7 +174,7 @@ class ClusterManager extends EventEmitter {
             this.printLogo();
 
             process.nextTick(async () => {
-                logger.info("General", "Cluster Manager has started!");
+                logger.info("General", "Cluster Manager ha sido iniciado!");
 
                 let shards = await this.calculateShards();
 
@@ -182,10 +182,10 @@ class ClusterManager extends EventEmitter {
 
                 if (this.lastShardID === 0) this.lastShardID = this.shardCount - 1;
 
-                logger.info("Cluster Manager", `Starting ${this.shardCount} shards in ${this.clusterCount} clusters`);
+                logger.info("Cluster Manager", `Iniciando ${this.shardCount} shards en ${this.clusterCount} clusters`);
 
                 let embed = {
-                    title: `Starting ${this.shardCount} shards in ${this.clusterCount} clusters`,
+                    title: `Iniciando ${this.shardCount} shards en ${this.clusterCount} clusters`,
                     color: this.color
                 }
 
@@ -412,7 +412,7 @@ class ClusterManager extends EventEmitter {
             });
         }
 
-        logger.info("Cluster Manager", `All shards spread`);
+        logger.info("Cluster Manager", `Todas las shards están siendo lanzadas`);
 
         if (this.stats) {
             this.startStats();
@@ -456,7 +456,7 @@ class ClusterManager extends EventEmitter {
     restartCluster(worker, code, signal) {
         const clusterID = this.workers.get(worker.id);
 
-        logger.warn("Cluster Manager", `Cluster ${clusterID} died`);
+        logger.warn("Cluster Manager", `Cluster ${clusterID} murió`);
 
         let cluster = this.clusters.get(clusterID);
 
@@ -478,7 +478,7 @@ class ClusterManager extends EventEmitter {
 
         this.workers.set(newWorker.id, clusterID);
 
-        logger.debug("Cluster Manager", `Restarting cluster ${clusterID}`);
+        logger.debug("Cluster Manager", `Reiniciando cluster ${clusterID}`);
 
         this.queue.queueItem({
             item: clusterID, value: {
