@@ -178,7 +178,7 @@ class Cluster {
      * @memberof Cluster
      */
     connect(firstShardID, lastShardID, maxShards, token, type, clientOptions) {
-        process.send({ name: "log", msg: `Connecting with ${this.shards} shard(s)` });
+        process.send({ name: "log", msg: `Iniciando el bot actualmente con ${firstShardID}~${lastShardID} shard(s)` });
 
         let options = { autoreconnect: true, firstShardID: firstShardID, lastShardID: lastShardID, maxShards: maxShards };
         let optionss = Object.keys(options);
@@ -203,7 +203,7 @@ class Cluster {
             process.send({ name: "log", msg: `Shard ${id} desconectada!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} disconnected!`,
+                description: `Shard ${id} está lista!`,
                 color: this.color
             }
             process.send({ name: "shard", embed: embed });
@@ -213,7 +213,7 @@ class Cluster {
             process.send({ name: "log", msg: `Shard ${id} está lista!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} is ready! (${bot.shards.get(id).latency} ms)`,
+                description: `Shard ${id} está lista!`,
                 color: this.color
             }
             process.send({ name: "shard", embed: embed });
@@ -223,7 +223,7 @@ class Cluster {
             process.send({ name: "log", msg: `Shard ${id} ha resumido!` });
             let embed = {
                 title: "Shard Status Update",
-                description: `Shard ${id} resumed!`,
+                description: `Shard ${id} se ha resumido!`,
                 color: this.color
             }
             process.send({ name: "shard", embed: embed });
