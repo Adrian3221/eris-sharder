@@ -192,7 +192,7 @@ class Cluster {
         this.bot = bot;
 
         this.bot.requestHandler = new SyncedRequestHandler(this.ipc, {
-            timeout: this.bot.options.requestTimeout
+            timeout: this.bot.options.rest.requestTimeout
         });
 
         bot.on("connect", id => {
