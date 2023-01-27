@@ -17,7 +17,7 @@ colors.setTheme({
     debug: 'cyan',
     error: 'red'
 });
-const log = () => {
+const log = function() {
     process.stdout.write(`[${new Date().toISOString()}]`+ ' ')
     console.log.apply(console, arguments)
     return this
