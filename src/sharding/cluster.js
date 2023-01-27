@@ -239,14 +239,13 @@ class Cluster {
 
         bot.once("ready", id => {
             this.loadCode(bot);
-
             this.startStats(bot);
         });
 
         bot.on("ready", id => {
             process.send({ name: "log", msg: `Shards ${this.firstShardID} - ${this.lastShardID} están listas!` });
             let embed = {
-                title: `Cluster ${this.clusterID} is ready!`,
+                title: `Cluster ${this.clusterID} está listo!`,
                 description: `Shards ${this.firstShardID} - ${this.lastShardID} están listas`,
                 color: this.color
             }
