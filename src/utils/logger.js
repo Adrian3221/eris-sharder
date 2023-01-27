@@ -1,5 +1,10 @@
 const colors = require('colors');
-
+const Console = require('console').Console
+const console = new Console({
+    stdout: process.stdout,
+    stderr: process.stderr,
+    colorMode: false,
+})
 colors.setTheme({
     silly: 'rainbow',
     log: 'grey',
@@ -12,7 +17,11 @@ colors.setTheme({
     debug: 'cyan',
     error: 'red'
 });
-var log = require('fancy-log');
+const log = () => {
+    process.stdout.write(`[${new Date().toISOString()}]`+ ' ')
+    console.log.apply(console, arguments)
+    return this
+}
 
 /**
  * 
